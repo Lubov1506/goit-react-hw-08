@@ -4,17 +4,23 @@ import { FeedbackSchema } from "../../helpers/validateSchema";
 import { useDispatch } from "react-redux";
 import { addContact, editContact } from "../../redux/contacts/operations";
 
-const ContactForm = ({ id, name = "", number = "", type = "add" }) => {
+const ContactForm = ({
+  id,
+  name = "",
+  number = "",
+  type = "add",
+  onClose = null,
+}) => {
   const dispatch = useDispatch();
   const initValue = {
     name,
     number,
   };
   const handleSubmit = (values, action) => {
-    console.log({id, ...values});
     type === "add"
       ? dispatch(addContact(values))
       : dispatch(editContact({ id, ...values }));
+    type === "edit" && onClose();
     action.resetForm();
   };
   return (

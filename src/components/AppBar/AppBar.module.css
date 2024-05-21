@@ -1,4 +1,5 @@
 .header {
+  width: 100vw;
   display: flex;
   border: 1px solid grey;
   justify-content: space-between;
@@ -7,7 +8,7 @@
   button {
     font-size: 25px;
     background-color: antiquewhite;
-    padding: 10px 20px;
+    padding: 10px;
     font-weight: medium;
     border-radius: 10px;
     transition: background-color 400ms linear;
@@ -15,11 +16,21 @@
       background-color: rgb(236, 223, 206);
     }
   }
+  .container {
+    display: flex;
+    gap: 20px;
+    min-width: 300px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
 }
 .nav {
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding: 10px;
   font-size: 30px;
   font-weight: bold;
 }

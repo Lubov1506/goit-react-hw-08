@@ -3,16 +3,22 @@ import s from "./LoginForm.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/auth/operations";
+import toast, { Toaster } from "react-hot-toast";
 const LoginForm = () => {
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
   const initialValues = {
     email: "",
     password: "",
   };
   const handleSubmit = (values) => {
+    if (values.email.trim() === "" || values.password.trim() === "") {
+      toast.error("Enter email and password!");
+      return;
+    }
+
     dispatch(loginThunk(values));
   };
+
   return (
     <div className={s.form_wrapper}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -30,6 +36,7 @@ const LoginForm = () => {
           <button type="submit">Log In</button>
         </Form>
       </Formik>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };

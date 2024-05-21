@@ -41,8 +41,10 @@ export const editContact = createAsyncThunk(
   "contacts/editContact",
   async (body, thunkAPI) => {
     try {
-      console.log(body);
-      const { data } = await instance.patch(`contacts/${body.id}`, body);
+      const { data } = await instance.patch(`contacts/${body.id}`, {
+        number: body.number,
+        name: body.name,
+      });
 
       return data;
     } catch (e) {

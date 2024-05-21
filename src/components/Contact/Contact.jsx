@@ -3,11 +3,11 @@ import { FaPhoneAlt } from "react-icons/fa";
 import Button from "../Button/Button";
 import s from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContact, editContact } from "../../redux/contacts/operations";
+import { deleteContact } from "../../redux/contacts/operations";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import ContactForm from "../ContactForm/ContactForm";
-import { MdEdit ,MdDeleteOutline} from "react-icons/md";
+import { MdEdit, MdDeleteOutline } from "react-icons/md";
 const Contact = ({ item }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
@@ -28,12 +28,22 @@ const Contact = ({ item }) => {
         </p>
       </div>
       <div className={s.options}>
-        <Button onClick={openModal}><MdEdit/></Button>
-        <Button onClick={() => dispatch(deleteContact(id))}><MdDeleteOutline/></Button>
+        <Button onClick={openModal}>
+          <MdEdit />
+        </Button>
+        <Button onClick={() => dispatch(deleteContact(id))}>
+          <MdDeleteOutline />
+        </Button>
       </div>
       {isOpen && (
         <Modal title="Edit contact" onClose={closeModal}>
-          <ContactForm id={id} name={name} number={number} type="edit" />
+          <ContactForm
+            id={id}
+            name={name}
+            number={number}
+            type="edit"
+            onClose={closeModal}
+          />
         </Modal>
       )}
     </li>

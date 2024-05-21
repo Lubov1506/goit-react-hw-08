@@ -1,11 +1,11 @@
-import LoginForm from "../../components/LoginForm/LoginForm"
-import s from './LoginForm.module.css'
+import LoginForm from "../../components/LoginForm/LoginForm";
+import s from "./LoginPage.module.css";
 const LoginPage = () => {
   return (
     <div className={s.form_wrapper}>
-      <LoginForm/>
+      <LoginForm />
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

@@ -45,6 +45,8 @@ ul {
   min-width: 300px;
   max-width: 1200px;
   padding: 10px;
+  margin: 0 auto;
+  text-align: center;
 }
 .btn {
   padding: 5px 10px;

@@ -3,3 +3,13 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
   gap: 20px;
 }
+.info {
+  background-color: rgba(255, 233, 193, 0.739);
+  font-weight: medium;
+  padding: 10px 25px;
+  border-radius: 10px;
+  width: max-content;
+  font-size: 25px;
+  text-align: center;
+  margin: 0 auto;
+}
