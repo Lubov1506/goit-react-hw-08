@@ -53,9 +53,10 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.rejected, handleRejected)
       .addCase(editContact.fulfilled, (state, { payload }) => {
-        const item = state.items.find((item) => item.id === payload.id);
-        console.log(item);
-        // item = payload;
+        const index = state.items.findIndex((item) => item.id === payload.id);
+        if (index !== -1) {
+          state.items[index] = { ...state.items[index], ...payload };
+        }
       });
   },
 });

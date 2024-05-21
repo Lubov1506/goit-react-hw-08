@@ -2,16 +2,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "./ContactsForm.module.css";
 import { FeedbackSchema } from "../../helpers/validateSchema";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { addContact, editContact } from "../../redux/contacts/operations";
 
-const ContactForm = () => {
+const ContactForm = ({ id, name = "", number = "", type = "add" }) => {
   const dispatch = useDispatch();
   const initValue = {
-    name: "",
-    number: "",
+    name,
+    number,
   };
   const handleSubmit = (values, action) => {
-    dispatch(addContact(values));
+    console.log({id, ...values});
+    type === "add"
+      ? dispatch(addContact(values))
+      : dispatch(editContact({ id, ...values }));
     action.resetForm();
   };
   return (
@@ -33,7 +36,7 @@ const ContactForm = () => {
           <ErrorMessage className={s.error} name="number" component="span" />
         </label>
 
-        <button type="submit">Submit</button>
+        <button type="submit">{type === "add" ? "Save" : "Edit"} </button>
       </Form>
     </Formik>
   );
