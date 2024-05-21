@@ -1,0 +1,22 @@
+.not_found {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  img {
+    width: 50%;
+  }
+  button {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    padding: 10px 25px;
+    transition: background-color 400ms linear;
+    border-radius: 10px;
+    &:hover {
+      background-color: rgb(3, 189, 3);
+    }
+  }
+}
