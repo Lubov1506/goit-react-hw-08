@@ -11,8 +11,11 @@ import { MdEdit, MdDeleteOutline } from "react-icons/md";
 const Contact = ({ item }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const [isDelModalOpen, setIsDelModalOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+  const openDelModal = () => setIsDelModalOpen(true);
+  const closeDelModal = () => setIsDelModalOpen(false);
 
   const { name, number, id } = item;
   return (
@@ -31,7 +34,7 @@ const Contact = ({ item }) => {
         <Button onClick={openModal}>
           <MdEdit />
         </Button>
-        <Button onClick={() => dispatch(deleteContact(id))}>
+        <Button onClick={openDelModal}>
           <MdDeleteOutline />
         </Button>
       </div>
@@ -44,6 +47,21 @@ const Contact = ({ item }) => {
             type="edit"
             onClose={closeModal}
           />
+        </Modal>
+      )}
+      {isDelModalOpen && (
+        <Modal title="Delete this contact?" onClose={closeDelModal}>
+          <div className={s.btn_modal}>
+            <Button
+              onClick={() => {
+                dispatch(deleteContact(id));
+                closeDelModal();
+              }}
+            >
+              Yes
+            </Button>
+            <Button onClick={closeDelModal}>No</Button>
+          </div>
         </Modal>
       )}
     </li>

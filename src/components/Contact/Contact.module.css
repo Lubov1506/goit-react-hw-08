@@ -27,3 +27,8 @@
     }
   }
 }
+
+.btn_modal {
+  display: flex;
+  flex-direction: row;
+}
