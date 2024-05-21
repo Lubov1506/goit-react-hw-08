@@ -5,17 +5,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  button {
-    font-size: 25px;
-    background-color: antiquewhite;
-    padding: 10px;
-    font-weight: medium;
-    border-radius: 10px;
-    transition: background-color 400ms linear;
-    &:hover {
-      background-color: rgb(236, 223, 206);
-    }
-  }
+
   .container {
     display: flex;
     gap: 20px;

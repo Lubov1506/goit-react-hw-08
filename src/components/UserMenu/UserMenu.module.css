@@ -1,0 +1,24 @@
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.logout_btn {
+  font-size: 25px;
+  background-color: antiquewhite;
+  padding: 10px;
+  font-weight: medium;
+  border-radius: 10px;
+  transition: background-color 400ms linear;
+  &:hover {
+    background-color: rgb(236, 223, 206);
+  }
+}
+.btn_modal {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  button {
+    flex-grow: 1;
+  }
+}

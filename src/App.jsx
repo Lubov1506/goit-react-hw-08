@@ -28,7 +28,6 @@ function App() {
             path="/contacts"
             element={<PrivateRoute component={<ContactsPage />} to="/login" />}
           />
-        </Route>
         <Route
           path="/login"
           element={<RestrictedRoute component={<LoginPage />} to="/contacts" />}
@@ -39,6 +38,7 @@ function App() {
             <RestrictedRoute component={<RegistrationPage />} to="/contacts" />
           }
           />
+        </Route>
           <Route path='*' element={ <NotFoundPage/>} />
         </Routes>
       }

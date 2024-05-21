@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
 import s from "./AppBar.module.css";
 import clsx from "clsx";
-import { logoutThunk } from "../../redux/auth/operations";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import UserMenu from "../UserMenu/UserMenu";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import AuthNav from "../AuthNav/AuthNav";
 const AppBar = () => {
-  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const activeLink = ({ isActive }) => {
     return clsx(isActive && s.active);
   };
@@ -19,7 +21,7 @@ const AppBar = () => {
             Contacts
           </NavLink>
         </nav>
-        <button onClick={() => dispatch(logoutThunk())}>Logout</button>
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </div>
     </header>
   );
