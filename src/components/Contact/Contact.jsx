@@ -7,7 +7,7 @@ import { deleteContact, editContact } from "../../redux/contacts/operations";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import ContactForm from "../ContactForm/ContactForm";
-
+import { MdEdit ,MdDeleteOutline} from "react-icons/md";
 const Contact = ({ item }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
@@ -28,8 +28,8 @@ const Contact = ({ item }) => {
         </p>
       </div>
       <div className={s.options}>
-        <Button onClick={openModal}>Edit</Button>
-        <Button onClick={() => dispatch(deleteContact(id))}>Delete</Button>
+        <Button onClick={openModal}><MdEdit/></Button>
+        <Button onClick={() => dispatch(deleteContact(id))}><MdDeleteOutline/></Button>
       </div>
       {isOpen && (
         <Modal title="Edit contact" onClose={closeModal}>

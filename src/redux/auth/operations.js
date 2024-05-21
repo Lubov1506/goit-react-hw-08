@@ -4,7 +4,7 @@ import axios from "axios";
 export const instance = axios.create({
   baseURL: "https://connections-api.herokuapp.com/",
 });
-const setAuthHeaders = (token) => {
+export const setAuthHeaders = (token) => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 const clearAuthHeaders = () => {
