@@ -11,7 +11,7 @@ const RegistrationForm = () => {
     email: "",
     password: "",
   };
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, actions) => {
     if (
       values.email.trim() === "" ||
       values.password.trim() === "" ||
@@ -20,7 +20,10 @@ const RegistrationForm = () => {
       toast.error("Enter data!");
       return;
     }
-    dispatch(registerThunk(values));
+    dispatch(registerThunk(values))
+      .unwrap()
+      .then(() => actions.resetForm())
+      .catch(() => toast.error("User already exist!"));
   };
   return (
     <div className={s.form_wrapper}>

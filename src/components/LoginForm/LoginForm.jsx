@@ -10,13 +10,16 @@ const LoginForm = () => {
     email: "",
     password: "",
   };
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, actions) => {
     if (values.email.trim() === "" || values.password.trim() === "") {
       toast.error("Enter email and password!");
       return;
     }
 
-    dispatch(loginThunk(values));
+    dispatch(loginThunk(values))
+      .unwrap()
+      .then(() => actions.resetForm())
+      .catch(()=>toast.error("Incorrect value!"));
   };
 
   return (

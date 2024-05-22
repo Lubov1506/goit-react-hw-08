@@ -5,6 +5,7 @@ import s from "./UserMenu.module.css";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
+
 const UserMenu = () => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
