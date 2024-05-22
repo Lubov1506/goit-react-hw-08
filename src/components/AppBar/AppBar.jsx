@@ -1,23 +1,21 @@
 import { NavLink } from "react-router-dom";
 import s from "./AppBar.module.css";
-import clsx from "clsx";
 import { useSelector } from "react-redux";
 import UserMenu from "../UserMenu/UserMenu";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import AuthNav from "../AuthNav/AuthNav";
+import { buildActiveClass } from "../../helpers/buildActiveClass";
 const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const activeLink = ({ isActive }) => {
-    return clsx(isActive && s.active);
-  };
+
   return (
     <header className={s.header}>
       <div className={s.container}>
         <nav className={s.nav}>
-          <NavLink className={activeLink} to="/">
+          <NavLink className={({isActive})=>buildActiveClass(isActive, `${s.active}`)} to="/">
             Home
           </NavLink>
-          <NavLink className={activeLink} to="/contacts">
+          <NavLink className={({isActive})=>buildActiveClass(isActive, `${s.active}`)} to="/contacts">
             Contacts
           </NavLink>
         </nav>
