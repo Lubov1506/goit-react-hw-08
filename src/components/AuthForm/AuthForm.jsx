@@ -6,11 +6,8 @@ import toast from "react-hot-toast";
 import { LoginSchema, RegisterSchema } from "../../helpers/validateSchema";
 
 const AuthForm = ({ initialValues, handleSubmit, type }) => {
-
   const handleValidationErrors = (errors) => {
-    Object.values(errors).forEach((error) => {
-      toast.error(error);
-    });
+    toast.error(Object.values(errors)[0]);
   };
   return (
     <div className={s.form_wrapper}>
