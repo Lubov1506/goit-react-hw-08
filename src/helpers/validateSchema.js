@@ -14,6 +14,25 @@ export const FeedbackSchema = Yup.object().shape({
 
 export const LoginSchema = Yup.object().shape({
   email: Yup.string()
-    .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)
+    .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, "Incorrect format")
     .required("Type email!"),
+  password: Yup.string()
+    .required("Type password")
+    .min(6, "Must be not shorter 6 symbols")
+    .max(20, "Too long!"),
+});
+
+export const RegisterSchema = Yup.object().shape({
+  name: Yup.string()
+    .matches(/^[a-zA-Zа-яА-ЯїЇіІєЄёЁґҐ\s']+$/, "Name can only contain letters")
+    .min(3, "Too short!")
+    .max(50, "Too long!")
+    .required("Please, type your name"),
+  email: Yup.string()
+    .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, "Incorrect format")
+    .required("Type email!"),
+  password: Yup.string()
+    .required("Type password")
+    .min(6, "Must be not shorter 6 symbols")
+    .max(20, "Too long!"),
 });

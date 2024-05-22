@@ -3,7 +3,6 @@ import s from "./ContactsForm.module.css";
 import { FeedbackSchema } from "../../helpers/validateSchema";
 import { useDispatch } from "react-redux";
 import { addContact, editContact } from "../../redux/contacts/operations";
-import { Toaster } from "react-hot-toast";
 
 const ContactForm = ({
   id,
@@ -42,10 +41,8 @@ const ContactForm = ({
           <Field type="number" name="number" className={s.input} />
           <ErrorMessage className={s.error} name="number" component="span" />
         </label>
-
         <button type="submit">{type === "add" ? "Save" : "Edit"} </button>
       </Form>
-
     </Formik>
   );
 };

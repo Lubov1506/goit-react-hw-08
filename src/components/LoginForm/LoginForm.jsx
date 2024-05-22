@@ -1,10 +1,8 @@
-import {  Field, Form, Formik } from "formik";
-import s from "./LoginForm.module.css";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/auth/operations";
 import toast from "react-hot-toast";
-import { LoginSchema } from "../../helpers/validateSchema";
+import AuthForm from "../AuthForm/AuthForm";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
   const initialValues = {
@@ -16,7 +14,7 @@ const LoginForm = () => {
       toast.error("Enter email and password!");
       return;
     }
-
+    actions.setSubmitting(false);
     dispatch(loginThunk(values))
       .unwrap()
       .then((res) => {
@@ -27,27 +25,11 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={s.form_wrapper}>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        // validationSchema={LoginSchema}
-      >
-        <Form className={s.form}>
-          <h2>Login</h2>
-          <Field type="email" name="email" placeholder="Enter your email" />
-          <Field
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-          />
-          <label>
-            <Link to="/register">Do not have an account? Register!</Link>
-          </label>
-          <button type="submit">Log In</button>
-        </Form>
-      </Formik>
-    </div>
+    <AuthForm
+      initialValues={initialValues}
+      type="login"
+      handleSubmit={handleSubmit}
+    />
   );
 };
 
