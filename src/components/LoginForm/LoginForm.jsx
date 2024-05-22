@@ -1,9 +1,10 @@
-import { Field, Form, Formik } from "formik";
+import {  Field, Form, Formik } from "formik";
 import s from "./LoginForm.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/auth/operations";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { LoginSchema } from "../../helpers/validateSchema";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const initialValues = {
@@ -18,13 +19,20 @@ const LoginForm = () => {
 
     dispatch(loginThunk(values))
       .unwrap()
-      .then(() => actions.resetForm())
-      .catch(()=>toast.error("Incorrect value!"));
+      .then((res) => {
+        toast.success(`Welcome back, ${res.user.name}`);
+        actions.resetForm();
+      })
+      .catch(() => toast.error("Incorrect value!"));
   };
 
   return (
     <div className={s.form_wrapper}>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        // validationSchema={LoginSchema}
+      >
         <Form className={s.form}>
           <h2>Login</h2>
           <Field type="email" name="email" placeholder="Enter your email" />
@@ -39,7 +47,6 @@ const LoginForm = () => {
           <button type="submit">Log In</button>
         </Form>
       </Formik>
-      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
